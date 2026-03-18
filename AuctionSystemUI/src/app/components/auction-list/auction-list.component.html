@@ -1,0 +1,23 @@
+<div class="auction-container">
+  <h2>Live Auctions (v21)</h2>
+
+  <div class="auction-grid">
+    @for (item of auctions(); track item.id) {
+      <div class="auction-card">
+        <h3>{{ item.title }}</h3>
+        
+        <p>Current Bid: 
+          <span class="price">${{ item.currentHighBid }}</span>
+        </p>
+
+        <p class="timer">Ends in: {{ getRemainingTime(item.endTime) }}</p>
+        
+        <button [routerLink]="['/auction', item.id]">
+          View & Place Bid
+        </button>
+      </div>
+    } @empty {
+      <p>No active auctions found.</p>
+    }
+  </div>
+</div>
